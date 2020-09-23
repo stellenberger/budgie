@@ -14,7 +14,7 @@ User stories
 ```
 As a money pressed user
 So that I can save money
-I would like to budget my spendings
+I would like to upload my spendings
 
 As a money pressed user
 So that I can see where I spend my money
@@ -24,4 +24,19 @@ As a money pressed user
 So that I can budget effectively
 I would like tips on how to save more money 
 
+As a money pressed user
+So that I can budget effectively
+I would like to see predicted spendings
+
+As a money pressed user
+So that I can track all my spendings
+I would like to add different 'accounts'
+
+As a money pressed user
+So that I can budget effectively 
+I would like to add a monthly spend limit
+
+As a money pressed user
+So that I can budget effectively 
+I would like to be told how much spend limit I have left
 ```
