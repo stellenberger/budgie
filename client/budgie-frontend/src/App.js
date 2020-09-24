@@ -5,7 +5,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
-import { Landing } from './components'
+import { Landing, Dashboard, Statistics, Account } from './components'
 
 function App() {
   return (
@@ -14,9 +14,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/' component={Landing} />
-          <Route exact path='/dashboard' component={Landing} />
-          <Route exact path='/statistics' component={Landing} />
-          <Route exact path='/account/:id' component={Landing} />
+          <Route exact path='/dashboard' component={Dashboard} />
+          <Route exact path='/statistics' component={Statistics} />
+          <Route exact path='/account/:id' component={Account} />
         </Switch>
       </Router>
     </div>
