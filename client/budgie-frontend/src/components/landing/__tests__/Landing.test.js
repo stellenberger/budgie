@@ -1,18 +1,18 @@
 import React from 'react'
-import Dashboard from '../Dashboard'
+import Landing from '../Landing'
 import { render, fireEvent } from '@testing-library/react'
 
-describe('Testing the Dashboard Component', () => {
+describe('Testing the Landing Component', () => {
   let container
   
   it('renders without crashing', () => {
-    container = render(<Dashboard />)
+    container = render(<Landing />)
     expect(container).toBeTruthy()
   })
 
   it('has a title on the page', () => {
-    const { getByText } = render(<Dashboard />);
-    const linkElement = getByText(/I am the Dashboard component/i);
+    const { getByText } = render(<Landing />);
+    const linkElement = getByText(/I am the Landing component/i);
     expect(linkElement).toBeInTheDocument();
   })
 })
