@@ -3,7 +3,8 @@ import './App.css';
 import { 
   BrowserRouter as Router, 
   Switch,
-  Route
+  Route, 
+  Redirect
 } from 'react-router-dom'
 import { Landing, Dashboard, Statistics, Account, NavPanel } from './components'
 
@@ -17,6 +18,7 @@ function App() {
     <div className="App">
       { user ? <NavPanel /> : null }
       <Router>
+      { user ? <Redirect to='/dashboard' /> : null }
         <Switch>
           <Route exact path='/' component={Landing} />
           <Route exact path='/dashboard' component={Dashboard} />
