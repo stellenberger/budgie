@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { 
   BrowserRouter as Router, 
@@ -8,9 +8,14 @@ import {
 import { Landing, Dashboard, Statistics, Account, NavPanel } from './components'
 
 function App() {
+  const [ user, setUser ] = useState(null)
+
+  useEffect(() => {
+    // check if user session is active
+  }, [])
   return (
     <div className="App">
-      <NavPanel />
+      { user ? <NavPanel /> : null }
       <Router>
         <Switch>
           <Route exact path='/' component={Landing} />
