@@ -5,12 +5,12 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
-import { Landing, Dashboard, Statistics, Account } from './components'
+import { Landing, Dashboard, Statistics, Account, NavPanel } from './components'
 
 function App() {
   return (
     <div className="App">
-      This is the app component
+      <NavPanel />
       <Router>
         <Switch>
           <Route exact path='/' component={Landing} />
