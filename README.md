@@ -16,7 +16,7 @@ Overview of Contents
 This is a solo project by Stephan Ellenberger, aimed at displaying some of the following technical skills; 
 - Test Driven Development
 - Database design and management
-- Backend Development (Python, Flask, Postgres)
+- Backend Development (Python, Django, Postgres)
 - Frontend Development (ReactJS)
 - Native Mobile Development (Flutter or React Native)
 - UX/UI design (Adobe XD)
@@ -62,5 +62,10 @@ You can use provided sample bank statements to see the app in action, or you can
 
 <h1 id="decisions">Technical dilemmas and decisions</h1> 
 
+At the time of writing this, there are multiple technologies that I am considering using on this project, and it is a matter of how useful and important it becomes in the later stages of development
+
+- Docker for containerising this application and to manage all the dependencies accross the board
+- Plaid to as an API for the bank accounts. At the time of writing this, I dont know how intuitive it will be to implement, so I will first start by just uploading a CSV file
+- threeJS for cool animations, perhaps later on in the application to create a dynamic and interactive GUI. 
 
 
