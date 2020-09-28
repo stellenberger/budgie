@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       { user ? <NavPanel /> : null }
       <Router>
-      { user ? <Redirect to='/dashboard' /> : null }
+      { user ? <Redirect to='/dashboard' /> : <Redirect to='/' /> }
         <Switch>
           <Route exact path='/' component={Landing} />
           <Route exact path='/dashboard' component={Dashboard} />

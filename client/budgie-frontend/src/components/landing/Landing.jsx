@@ -6,8 +6,10 @@ const Landing = () => {
   return (
     <div className={styles.landingContainer}>
       <span className={styles.logo}><img src={Logo} alt="budgie logo"/></span>
-      <div className={styles.landingIntro}>
-        <p>Welcome to budgie, the smart budgeting app to manage your spendings</p>
+      <p className={styles.landingIntro}>Welcome to budgie, the smart budgeting app to manage your spendings</p>
+      <div className={styles.authButtonsContainer}>
+        <a href="#" className={styles.authButton}>Login</a>
+        <a href="#" className={styles.authButton}>Register</a>
       </div>
     </div>
   )
