@@ -1,35 +1,38 @@
 .landingContainer {
   min-height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  .logo {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  .landingIntro {
-    text-align: center;
-    width: 100%;
-  }
-  .authButtonsContainer {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    .authButton {
-      width: 120px;
-      text-decoration: none;
-      color: black;
-      border: 1px solid black;
-      border-radius: 10px;
-      padding: 10px;
-      margin: 10px;
-      box-shadow:  5px 10px #888888;
-      &:hover {
-        box-shadow:  5px 12px #888888;
-        transform: translateY(-2px);
+  .contentContainer {
+    transform: translateY(-50px);
+    margin: auto;
+    .logo {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .landingIntro {
+      text-align: center;
+      width: 100%;
+    }
+    .authButtonsContainer {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      .authButton {
+        width: 120px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+        box-shadow:  5px 10px #888888;
+        &:hover {
+          box-shadow:  5px 12px #888888;
+          transform: translateY(-2px);
+        }
       }
     }
   }

@@ -3,13 +3,12 @@ import './App.css';
 import { 
   BrowserRouter as Router, 
   Switch,
-  Route, 
-  Redirect
+  Route
 } from 'react-router-dom'
-import { Landing, Dashboard, Statistics, Account, NavPanel } from './components'
+import { Landing, Dashboard, Statistics, Account, NavPanel, ErrorPage404 } from './components'
 
 function App() {
-  const [ user, setUser ] = useState(null)
+  const [ user, setUser ] = useState(true)
 
   useEffect(() => {
     // check if user session is active
@@ -18,12 +17,12 @@ function App() {
     <div className="App">
       { user ? <NavPanel /> : null }
       <Router>
-      { user ? <Redirect to='/dashboard' /> : <Redirect to='/' /> }
         <Switch>
-          <Route exact path='/' component={Landing} />
-          <Route exact path='/dashboard' component={Dashboard} />
-          <Route exact path='/statistics' component={Statistics} />
-          <Route exact path='/account/:id' component={Account} />
+          <Route exact path='/' render={(props) => <Landing user={user}/>} />
+          <Route exact path='/dashboard' render={(props) => <Dashboard user={user}/>} />
+          <Route exact path='/statistics' render={(props) => <Statistics user={user}/>} />
+          <Route exact path='/account/:id' render={(props) => <Account user={user}/>} />
+          <Route component={ErrorPage404} />
         </Switch>
       </Router>
     </div>

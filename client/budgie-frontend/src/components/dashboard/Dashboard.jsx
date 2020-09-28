@@ -1,9 +1,11 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 
-export default function Dashboard() {
+export default function Dashboard({ user }) {
   return (
     <div>
-      I am the Dashboard Component
+      { user ? null : <Redirect to='/' /> }
+      I am the Dashboard Component 
     </div>
   )
 }

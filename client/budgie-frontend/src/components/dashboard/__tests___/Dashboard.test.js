@@ -6,12 +6,14 @@ describe('Testing the Dashboard Component', () => {
   let container
   
   it('renders without crashing', () => {
-    container = render(<Dashboard />)
+    const user = true
+    container = render(<Dashboard user={user} />)
     expect(container).toBeTruthy()
   })
 
   it('has a title on the page', () => {
-    const { getByText } = render(<Dashboard />);
+    const user = true
+    const { getByText } = render(<Dashboard user={user} />);
     const linkElement = getByText(/I am the Dashboard component/i);
     expect(linkElement).toBeInTheDocument();
   })
