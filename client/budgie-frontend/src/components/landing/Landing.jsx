@@ -12,7 +12,7 @@ const Landing = ({ user }) => {
       <p className={styles.landingIntro}>Welcome to budgie, the smart budgeting app to manage your spendings</p>
       <div className={styles.authButtonsContainer}>
         <a href="/login" className={styles.authButton}>Login</a>
-        <a href="/login" className={styles.authButton}>Register</a>
+        <a href="/register" className={styles.authButton}>Register</a>
       </div>
       </div>
     </div>
