@@ -12,7 +12,7 @@ describe('Testing the Login Component', () => {
 
   it('has a title on the page', () => {
     const { getByText } = render(<Login />);
-    const linkElement = getByText(/I am the Login component/i);
+    const linkElement = getByText(/Login/i);
     expect(linkElement).toBeInTheDocument();
   })
 })

@@ -12,7 +12,7 @@ describe('Testing the Register Component', () => {
 
   it('has a title on the page', () => {
     const { getByText } = render(<Register />);
-    const linkElement = getByText(/I am the Register component/i);
+    const linkElement = getByText(/Register here!/i);
     expect(linkElement).toBeInTheDocument();
   })
 })
