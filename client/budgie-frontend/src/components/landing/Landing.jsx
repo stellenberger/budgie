@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Landing.module.scss'
 import { Logo } from '../../media'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 const Landing = ({ user }) => {
   return (
@@ -11,8 +11,8 @@ const Landing = ({ user }) => {
       <span className={styles.logo}><img src={Logo} alt="budgie logo"/></span>
       <p className={styles.landingIntro}>Welcome to budgie, the smart budgeting app to manage your spendings</p>
       <div className={styles.authButtonsContainer}>
-        <a href="/login" className={styles.authButton}>Login</a>
-        <a href="/register" className={styles.authButton}>Register</a>
+        <Link to='/login' className={styles.authButton}>Login</Link>
+        <Link to='/register' className={styles.authButton}>Register</Link>
       </div>
       </div>
     </div>
