@@ -1,6 +1,8 @@
 .loginContainer {
+  position: relative;
   margin: auto;
   max-width: 800px;
+  z-index: 999;
   label {
     font-size: 20px;
   }
@@ -11,12 +13,27 @@
     margin: 10px 0 10px 0;
   } 
 }
+
+.registerContainer {
+  @extend .loginContainer;
+  label {
+    font-size: 20px;
+  }
+  input {
+    padding: 5px;
+    min-width: 200px;
+    font-size: 15px;
+    margin: 10px 0 10px 0;
+  } 
+}
+
 .stripe {
+  clip-path: polygon(0 30%, 100% 0, 100% 100%, 0% 100%);
   position: absolute;
-  height: 70vh;
+  height: 60vh;
   background-color: #B2E3FF;
   width: 110%;
-  bottom: -15%;
+  bottom: 0%;
   left: -5%;
-  transform: rotate(-8deg)
+  overflow: none;
 }
