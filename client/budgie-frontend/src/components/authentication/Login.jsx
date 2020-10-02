@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styles from './Authentication.module.scss'
 
 export default function Login() {
   const [user, setUser] = useState({username: '', password: ''})
@@ -14,12 +15,19 @@ export default function Login() {
   }
 
   return (
-    <div>
-      <form action="POST" onSubmit={submitForm}>
-        <input type="text" name="username" onChange={handleOnChange} value={user.username}/>
-        <input type="password" name="password" onChange={handleOnChange} value={user.password}/>
-        <input type="submit"/>
-      </form>
-    </div>
+    <>
+      <div className={styles.loginContainer}>
+        <h2>Welcome back</h2>
+        <h2>Login</h2>
+        <form action="POST" onSubmit={submitForm}>
+          <label>Username:</label> <br/>
+          <input type="text" name="username" onChange={handleOnChange} value={user.username}/> <br/>
+          <label>Password:</label> <br/>
+          <input type="password" name="password" onChange={handleOnChange} value={user.password}/> <br/>
+          <input type="submit"/>
+        </form>
+      </div>
+      <div className={styles.stripe} />
+    </>
   )
 }

@@ -1,0 +1,22 @@
+.loginContainer {
+  margin: auto;
+  max-width: 800px;
+  label {
+    font-size: 20px;
+  }
+  input {
+    padding: 5px;
+    min-width: 200px;
+    font-size: 15px;
+    margin: 10px 0 10px 0;
+  } 
+}
+.stripe {
+  position: absolute;
+  height: 70vh;
+  background-color: #B2E3FF;
+  width: 110%;
+  bottom: -15%;
+  left: -5%;
+  transform: rotate(-8deg)
+}
