@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import styles from './Authentication.module.scss'
 import axios from 'axios'
 
-export default function Login() {
+export default function Login({user, setUser}) {
   const [loginCredentials, setLoginCredentials] = useState({username: '', password: ''})
   const [loginErrorMessage, setLoginErrorMessage] = useState(null)
   const [errorStyle, setErrorStyle] = useState({display: 'none'})
+  let history = useHistory()
+
+  
   const submitForm = (e) => {
     axios.post('http://localhost:8000/login/', loginCredentials)
     .then((response) => {
-      console.log('login successful', response)
+      console.log('login successful', response.data.token)
+      setUser({username: loginCredentials.username, token: response.data.token })
+      history.push('/dashboard')
     })
     .catch((error) => {
       console.log('login failed', error)

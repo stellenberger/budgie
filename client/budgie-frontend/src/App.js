@@ -26,9 +26,9 @@ function App() {
       { user ? <NavPanel /> : null }
       <Router>
         <Switch>
-          <Route exact path='/' render={(props) => <Landing user={user}/>} />
-          <Route exact path='/login' render={(props) => <Login user={user}/>} />
-          <Route exact path='/register' render={(props) => <Register user={user}/>} />
+          <Route exact path='/' render={(props) => <Landing user={user} setUser={setUser}/>} />
+          <Route exact path='/login' render={(props) => <Login user={user} setUser={setUser}/>} />
+          <Route exact path='/register' render={(props) => <Register user={user} setUser={setUser}/>} />
           <Route exact path='/dashboard' render={(props) => <Dashboard user={user}/>} />
           <Route exact path='/statistics' render={(props) => <Statistics user={user}/>} />
           <Route exact path='/account/:id' render={(props) => <Account user={user}/>} />
