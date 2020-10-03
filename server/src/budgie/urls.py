@@ -20,8 +20,8 @@ from core.views import TestView
 from rest_framework.authtoken import views
 
 urlpatterns = [
-    # path('api-auth/', include('rest_framework.urls')),
-    path('login/', views.obtain_auth_token, name='api-token-auth'),
+    path('api-auth/', include('rest_framework.urls')),
+    # path('login/', views.obtain_auth_token, name='api-token-auth'),
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
     path('', TestView.as_view(), name='test'),
