@@ -37,3 +37,13 @@
   left: -5%;
   overflow: none;
 }
+
+.errorMessage {
+  border: 3px solid black;
+  width: 180px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  background-color: orange;
+}

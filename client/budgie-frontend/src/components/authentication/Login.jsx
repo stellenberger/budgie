@@ -4,7 +4,8 @@ import axios from 'axios'
 
 export default function Login() {
   const [loginCredentials, setLoginCredentials] = useState({username: '', password: ''})
-
+  const [loginErrorMessage, setLoginErrorMessage] = useState(null)
+  const [errorStyle, setErrorStyle] = useState({display: 'none'})
   const submitForm = (e) => {
     axios.post('http://localhost:8000/login/', loginCredentials)
     .then((response) => {
@@ -12,6 +13,7 @@ export default function Login() {
     })
     .catch((error) => {
       console.log('login failed', error)
+      showErrorMessage()
     })
     e.preventDefault()
     console.log('form submitted', loginCredentials)
@@ -20,6 +22,15 @@ export default function Login() {
   const handleOnChange = (e) => {
     setLoginCredentials({...loginCredentials, [e.target.name]: e.target.value})
     console.log('Handeling on change', loginCredentials)
+  }
+
+  const showErrorMessage = () => {
+    console.log('hello from inside error message')
+    setLoginErrorMessage("We didnt recognise your email or password")
+    setErrorStyle({display: 'block'})
+    setTimeout(() => {
+      setErrorStyle({display: 'none'})
+    }, 3000)
   }
 
   return (
@@ -34,6 +45,7 @@ export default function Login() {
           <input type="password" name="password" onChange={handleOnChange} value={loginCredentials.password}/> <br/>
           <input type="submit"/>
         </form>
+        <p className={styles.errorMessage} style={errorStyle}>{loginErrorMessage}</p>
       </div>
       <div className={styles.stripe} />
     </>
