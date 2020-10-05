@@ -7,10 +7,10 @@ export default function Dashboard({ user }) {
   return (
     <div className={styles.container}>
       { !user && <Redirect to='/' /> }
-      { user && <NavPanel /> }
+      { user && <NavPanel user={user} /> }
       <div className={styles.content}>
         { user && <h1 className={styles.welcomeMessage}>Welcome back, {user.username}!</h1> }
-        
+        <h3>This is your Dashboard, where you can find an overview of your spendings over the last few days</h3>
       </div>
     </div>
   )
