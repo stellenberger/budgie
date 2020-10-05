@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import { 
   BrowserRouter as Router, 
   Switch,
@@ -16,14 +16,14 @@ import {
   ErrorPage404 } from './components'
 
 function App() {
-  const [ user, setUser ] = useState(null)
+  const exampleUser = {username: 'stephanellenberger', token: '123'} // This is for overriding redirects, and is not a real user
+  const [ user, setUser ] = useState(exampleUser)
 
   useEffect(() => {
     // check if user session is active
   }, [])
   return (
     <div className="App">
-      { user ? <NavPanel /> : null }
       <Router>
         <Switch>
           <Route exact path='/' render={(props) => <Landing user={user} setUser={setUser}/>} />
