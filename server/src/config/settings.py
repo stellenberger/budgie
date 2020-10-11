@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'knox',
     'apps.accounts',
+    'apps.bank_accounts',
+    'apps.utils',
 ]
 
 MIDDLEWARE = [
