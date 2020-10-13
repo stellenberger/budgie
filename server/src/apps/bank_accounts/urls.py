@@ -1,10 +1,11 @@
 from django.urls import path, include
-from rest_framework import routers
-from .views import BankAccountViewSet
-
-router = routers.DefaultRouter()
-router.register(r'', BankAccountViewSet)
+from . import views
 
 urlpatterns = [
-  path('', include(router.urls)),
+  path('list/', views.bankAccountList, name='bank-account-list'),
+  path('detail/<str:pk>/', views.bankAccountDetail, name='bank-account-detail'),
+  path('detailcsv/<str:pk>/', views.bankAccountDetailCSV, name='bank-account-detailcsv'),
+  path('create/', views.bankAccountCreate, name='bank-account-create'),
+  path('update/<str:pk>/', views.bankAccountUpdate, name='bank-account-update'),
+  path('delete/<str:pk>/', views.bankAccountDelete, name='bank-account-delete'),
 ]

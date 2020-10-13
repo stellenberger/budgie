@@ -23,5 +23,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     # path('login/', views.obtain_auth_token, name='api-token-auth'),
     path('admin/', admin.site.urls),
-    path('api/v1/accounts/', include('apps.accounts.urls'))
+    path('api/v1/accounts/', include('apps.accounts.urls')),
+    path('api/v1/bank-accounts/', include('apps.bank_accounts.urls')),
 ]
