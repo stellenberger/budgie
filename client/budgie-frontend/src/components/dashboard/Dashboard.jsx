@@ -28,16 +28,18 @@ export default function Dashboard({ user }) {
       <div className={styles.content}>
         { user && <h1 className={styles.welcomeMessage}>Welcome back, {user.username}!</h1> }
         <h3>This is your Dashboard, where you can find an overview of your spendings over the last few days</h3>
+        <h2>Each of your accounts, graphed by date</h2>
+        {account && accountData && <Chart account={account} accountData={accountData}/>}
         {account && (
           <div className={styles.accountOverviewContainer}>
             <h4>{account.name}</h4>
-            {accountData.map((line) => {
-              return <p>{line.map((item) => <span>{item}</span>)}</p>
-            })}
+            <table>
+              {accountData.map((line) => {
+                return <tr key={line[0]}>{line.map((item) => <th key={item}>{item}</th>)}</tr>
+              })}
+            </table>
           </div>
         )}
-        <h2>Each of your accounts, graphed by date</h2>
-        {account && accountData && <Chart account={account} accountData={accountData}/>}
       </div>
     </div>
   )

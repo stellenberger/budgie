@@ -4,10 +4,16 @@ import {Bar, Line, Pie} from 'react-chartjs-2'
 export default function Chart({ account, accountData }) {
   const [chartData, setChartData] = useState(null) 
   let dates = []
+  let accountBalances = []
+  let accountBalance
   useEffect(() => {
     // this will move all dates into their own array
     for (let i=1; i < accountData.length; i++) {
       dates.push(accountData[i][0])
+    }
+    for (let i=1; i < accountData.length; i++) {
+      accountBalance = parseInt(accountData[i][7])
+      accountBalances.push(accountBalance)
     }
     setChartData({
       labels: dates.reverse(),
@@ -19,7 +25,7 @@ export default function Chart({ account, accountData }) {
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
-          data: [65, 59, 80, 81, 56, 55, 40]
+          data: accountBalances.reverse()
         }
       ] 
     })
@@ -27,7 +33,7 @@ export default function Chart({ account, accountData }) {
   
   return (
     <div>
-      {account && 
+      {chartData && 
         <div>
           <h2>{account.name}</h2>
           <Bar
