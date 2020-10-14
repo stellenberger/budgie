@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'
 export default function NavPanel({ user }) {
   return (
     <div className={styles.container}>
+        <h2>{user.username}</h2>
       <ul>
-        <li>{user.username}</li>
-        <li><Link path='/'>Statistics</Link></li>
-        <li><Link path='/'>Add new card</Link></li>
-        <li><Link path='/'>Account</Link></li>
-        <li><Link path='/'>About this app</Link></li>
+        <li><Link to='/'>Statistics</Link></li>
+        <li><Link to='/'>Add new card</Link></li>
+        <li><Link to='/'>Account</Link></li>
+        <li><Link to='/'>About this app</Link></li>
       </ul>
     </div>
   )
