@@ -15,25 +15,18 @@ def bankAccountList(request):
   return Response(serializer.data)
 
 
-# Get data from csv file of particular bank account
-@api_view(['GET'])
-def bankAccountDetailCSV(request, pk):
-  bankAccount = BankAccount.objects.get(id=pk)
-  serializer = BankAccountSerializer(bankAccount, many=False)
-  print(bankAccount.records)
-  csv_array = []
-  with open(f'{bankAccount.records}', 'r') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    for line in csv_reader:
-      csv_array.append(line)
-  return Response(csv_array)
-
 # Get a single bank account view
 @api_view(['GET'])
 def bankAccountDetail(request, pk):
   bankAccount = BankAccount.objects.get(id=pk)
   serializer = BankAccountSerializer(bankAccount, many=False)
-  return Response(serializer.data)
+  csv_array = []
+  with open(f'{bankAccount.records}', 'r') as csv_file:
+    csv_reader = csv.reader(csv_file)
+    for line in csv_reader:
+      csv_array.append(line)
+  response = [csv_array, serializer.data]
+  return Response(response)
 
 
 # Create a single bank account view
