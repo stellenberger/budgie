@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import { NavPanel } from '../index.jsx'
+import { NavPanel, Chart } from '../index.jsx'
 import styles from './Dashboard.module.scss'
 import axios from 'axios'
 
 
 export default function Dashboard({ user }) {
   const [account, setAccount] = useState(null)
+  const [accountData, setaccountData] = useState(null)
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/v1/bank-accounts/detail/3/')
     .then((response) => {
       console.log('successful response', response)
-      setAccount(response)
+      setaccountData(response.data[0])
+      setAccount(response.data[1])
     })
     .catch((error) => {
       console.log('something went wrong: ', error)
@@ -28,12 +30,14 @@ export default function Dashboard({ user }) {
         <h3>This is your Dashboard, where you can find an overview of your spendings over the last few days</h3>
         {account && (
           <div className={styles.accountOverviewContainer}>
-            <h4>{account.data[1].name}</h4>
-            {account.data[0].map((line) => {
+            <h4>{account.name}</h4>
+            {accountData.map((line) => {
               return <p>{line.map((item) => <span>{item}</span>)}</p>
             })}
           </div>
         )}
+        <h2>Each of your accounts, graphed by date</h2>
+        {account && accountData && <Chart account={account} accountData={accountData}/>}
       </div>
     </div>
   )

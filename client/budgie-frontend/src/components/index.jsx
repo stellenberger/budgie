@@ -5,4 +5,5 @@ export { default as Dashboard } from './dashboard/Dashboard.jsx';
 export { default as Statistics } from './statistics/Statistics.jsx';
 export { default as Account } from './account/Account.jsx';
 export { default as NavPanel } from './navpanel/NavPanel.jsx';
+export { default as Chart } from './chart/Chart.jsx';
 export { default as ErrorPage404 } from './errorpages/ErrorPage404.jsx';
