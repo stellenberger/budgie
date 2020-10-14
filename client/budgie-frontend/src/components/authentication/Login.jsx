@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import styles from './Authentication.module.scss'
 import axios from 'axios'
+import { baseURL, loginEndpoint } from '../../constants'
 
 export default function Login({user, setUser}) {
   const [loginCredentials, setLoginCredentials] = useState({username: '', password: ''})
@@ -11,7 +12,7 @@ export default function Login({user, setUser}) {
 
   
   const submitForm = (e) => {
-    axios.post('http://localhost:8000/login/', loginCredentials)
+    axios.post(baseURL + loginEndpoint, loginCredentials)
     .then((response) => {
       console.log('login successful', response.data.token)
       setUser({username: loginCredentials.username, token: response.data.token })

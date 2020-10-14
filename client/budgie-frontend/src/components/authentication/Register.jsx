@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from './Authentication.module.scss'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import { baseURL, registerEndpoint } from '../../constants'
 
 
 export default function Register({ user, setUser }) {
@@ -20,7 +21,7 @@ export default function Register({ user, setUser }) {
     if(registerUser.password !== registerUser.password_confirmation) {
       showPasswordError()
     } else {
-      axios.post('http://localhost:8000/register/', registerUser)
+      axios.post(baseURL + registerEndpoint, registerUser)
       .then((response) => {
         console.log('Registration successful', response)
         console.log(response.data.token)

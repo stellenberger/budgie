@@ -17,7 +17,7 @@ import {
 
 function App() {
   const exampleUser = {username: 'stephanellenberger', token: '123'} // This is for overriding redirects, and is not a real user
-  const [ user, setUser ] = useState(exampleUser)
+  const [ user, setUser ] = useState(null)
 
   useEffect(() => {
     // check if user session is active
