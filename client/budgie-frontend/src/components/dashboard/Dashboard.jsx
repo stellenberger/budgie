@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { NavPanel, Chart } from '../index.jsx'
 import styles from './Dashboard.module.scss'
 import axios from 'axios'
+import { baseURL, accountEndpoint } from '../../constants'
 
 
 export default function Dashboard({ user }) {
@@ -10,7 +11,7 @@ export default function Dashboard({ user }) {
   const [accountData, setaccountData] = useState(null)
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/v1/bank-accounts/detail/3/')
+    axios.get(baseURL + accountEndpoint + '5/')
     .then((response) => {
       console.log('successful response', response)
       setaccountData(response.data[0])

@@ -13,6 +13,7 @@ import {
   NavPanel, 
   Login, 
   Register, 
+  BankAccount,
   ErrorPage404 } from './components'
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route exact path='/dashboard' render={(props) => <Dashboard user={user}/>} />
           <Route exact path='/statistics' render={(props) => <Statistics user={user}/>} />
           <Route exact path='/account/:id' render={(props) => <Account user={user}/>} />
+          <Route exact path='/bank_account' render={(props) => <BankAccount user={user}/>} />
           <Route component={ErrorPage404} />
         </Switch>
       </Router>
