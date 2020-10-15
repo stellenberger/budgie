@@ -33,7 +33,7 @@ def bankAccountDetail(request, pk):
 @api_view(['POST'])
 def bankAccountCreate(request):
   serializer = BankAccountSerializer(data=request.data)
-
+  
   if serializer.is_valid():
     serializer.save()
 
@@ -45,7 +45,6 @@ def bankAccountCreate(request):
 def bankAccountUpdate(request, pk):
   bankAccount = BankAccount.objects.get(id=pk)
   serializer = BankAccountSerializer(instance=bankAccount, data=request.data)
-
   if serializer.is_valid():
     serializer.save()
 
