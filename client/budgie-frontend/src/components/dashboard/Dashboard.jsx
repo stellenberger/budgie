@@ -16,7 +16,7 @@ export default function Dashboard({ user }) {
   }
   console.log(user)
   useEffect(() => {
-    axios.get(baseURL + bankAccountEndpointAll + '1/', { headers: headers})
+    axios.get(baseURL + bankAccountEndpointAll, { headers: headers})
     .then((response) => {
       console.log('successful response', response.data)
       setAccounts(response.data)
