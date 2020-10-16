@@ -29,6 +29,29 @@ def bankAccountDetail(request, pk):
   return Response(response)
 
 
+# Get multiple bank account views
+@api_view(['GET'])
+def bankAccountDetailAll(request, pk):
+  bankAccounts = BankAccount.objects.filter(user_id=pk)
+  serializer = BankAccountSerializer(bankAccounts, many=True)
+  csv_array = []
+  for account in bankAccounts: 
+    csv_object = []
+    with open(f'{account.records}', 'r') as csv_file:
+      csv_reader = csv.reader(csv_file)
+      for line in csv_reader:
+        csv_object.append(line)
+    csv_array.append(csv_object)
+
+  accountData = []
+  i = 0
+  while i < len(csv_array):
+    accountData.append([csv_array[i], serializer.data[i]])
+    i += 1
+  response = accountData
+  return Response(response)
+
+
 # Create a single bank account view
 @api_view(['POST'])
 def bankAccountCreate(request):
