@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'knox',
     'apps.accounts',
+    'apps.authentication',
     'apps.bank_accounts',
     'apps.utils',
 ]

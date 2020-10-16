@@ -6,6 +6,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import BankAccountSerializer
+from django.contrib.auth.models import User
 
 # Get all bank account views
 @api_view(['GET'])
@@ -32,6 +33,8 @@ def bankAccountDetail(request, pk):
 # Get multiple bank account views
 @api_view(['GET'])
 def bankAccountDetailAll(request, pk):
+  # print(request.COOKIES['sessionid'])
+  # print(request.headers['Authorization'])
   bankAccounts = BankAccount.objects.filter(user_id=pk)
   serializer = BankAccountSerializer(bankAccounts, many=True)
   csv_array = []
@@ -82,11 +85,5 @@ def bankAccountDelete(request, pk):
 
 class BankAccountViewSet(viewsets.ModelViewSet):
   queryset = BankAccount.objects.all()
-  # print(queryset.first().records)
-  # with open(f'{queryset.first().records}', 'r') as csv_file:
-  #   csv_reader = csv.reader(csv_file)
-
-  #   for line in csv_reader:
-  #     print(line)
   serializer_class = BankAccountSerializer
   

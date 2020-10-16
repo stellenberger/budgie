@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from core.views import TestView
 from rest_framework.authtoken import views
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
@@ -25,4 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/accounts/', include('apps.accounts.urls')),
     path('api/v1/bank-accounts/', include('apps.bank_accounts.urls')),
+    path('api/v1/login/', obtain_auth_token),
+    path('api/v1/authentication/', include('apps.authentication.urls')), 
 ]
