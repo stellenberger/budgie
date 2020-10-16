@@ -8,7 +8,7 @@ export default function NavPanel({ user }) {
         <h2>{user.username}</h2>
       <ul>
         <li><Link to='/'>Statistics</Link></li>
-        <li><Link to='/bank_account'>Add new card</Link></li>
+        <li><Link to='/add_bank_account'>Add new card</Link></li>
         <li><Link to='/'>Account</Link></li>
         <li><Link to='/'>About this app</Link></li>
       </ul>
