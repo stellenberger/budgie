@@ -8,9 +8,15 @@ import { baseURL, bankAccountEndpointAll } from '../../constants'
 
 export default function Dashboard({ user }) {
   const [accounts, setAccounts] = useState([])
-  const [totalExpenditure, setTotalExpenditure] = useState(21)
+  const [totalExpenditure, setTotalExpenditure] = useState(0)
+
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Token ${user.token}`
+  }
+  console.log(user)
   useEffect(() => {
-    axios.get(baseURL + bankAccountEndpointAll + '1/')
+    axios.get(baseURL + bankAccountEndpointAll + '1/', { headers: headers})
     .then((response) => {
       console.log('successful response', response.data)
       setAccounts(response.data)

@@ -14,7 +14,7 @@ export default function Login({user, setUser}) {
   const submitForm = (e) => {
     axios.post(baseURL + loginEndpoint, loginCredentials)
     .then((response) => {
-      console.log('login successful', response.data.token)
+      console.log('login successful', response.data)
       setUser({username: loginCredentials.username, token: response.data.token })
       history.push('/dashboard')
     })
