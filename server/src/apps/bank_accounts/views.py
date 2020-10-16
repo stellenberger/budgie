@@ -32,11 +32,11 @@ def bankAccountDetail(request, pk):
 
 # Get multiple bank account views
 @api_view(['GET'])
-def bankAccountDetailAll(request, pk):
+def bankAccountDetailAll(request):
   # print(request.COOKIES['sessionid'])
   # print(request.headers['Authorization'])
-  print(request.user)
-  bankAccounts = BankAccount.objects.filter(user_id=pk)
+  user_id = request.user.id
+  bankAccounts = BankAccount.objects.filter(user_id=user_id)
   serializer = BankAccountSerializer(bankAccounts, many=True)
   csv_array = []
   for account in bankAccounts: 
