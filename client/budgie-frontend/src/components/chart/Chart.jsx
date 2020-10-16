@@ -6,6 +6,7 @@ export default function Chart({ account, accountData }) {
   let dates = []
   let accountBalances = []
   let accountBalance
+  const randomNumber = () => {return Math.floor(Math.random() * 255)}
   useEffect(() => {
     // this will move all dates into their own array
     for (let i=1; i < accountData.length; i++) {
@@ -20,11 +21,11 @@ export default function Chart({ account, accountData }) {
       datasets: [
         {
           label: account.name,
-          backgroundColor: 'rgba(255,99,132,0.2)',
-          borderColor: 'rgba(255,99,132,1)',
+          backgroundColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},0.2)`,
+          borderColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},1)`,
           borderWidth: 1,
-          hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-          hoverBorderColor: 'rgba(255,99,132,1)',
+          hoverBackgroundColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},0.4)`,
+          hoverBorderColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},1)`,
           data: accountBalances.reverse()
         }
       ] 
