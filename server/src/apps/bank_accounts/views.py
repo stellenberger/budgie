@@ -35,6 +35,7 @@ def bankAccountDetail(request, pk):
 def bankAccountDetailAll(request, pk):
   # print(request.COOKIES['sessionid'])
   # print(request.headers['Authorization'])
+  print(request.user)
   bankAccounts = BankAccount.objects.filter(user_id=pk)
   serializer = BankAccountSerializer(bankAccounts, many=True)
   csv_array = []
