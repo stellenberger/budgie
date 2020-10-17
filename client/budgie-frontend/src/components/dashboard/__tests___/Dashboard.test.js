@@ -1,20 +1,24 @@
 import React from 'react'
 import Dashboard from '../Dashboard'
 import { render, fireEvent } from '@testing-library/react'
+import { 
+  BrowserRouter as BR,
+  Route as R
+} from 'react-router-dom'
 
 describe('Testing the Dashboard Component', () => {
   let container
   
   it('renders without crashing', () => {
-    const user = true
-    container = render(<Dashboard user={user} />)
+    const user = {username: 'stephan', token: '1234'}
+    container = render(<BR><Dashboard user={user} /></BR>)
     expect(container).toBeTruthy()
   })
 
   it('has a title on the page', () => {
-    const user = true
-    const { getByText } = render(<Dashboard user={user} />);
-    const linkElement = getByText(/I am the Dashboard component/i);
+    const user = {username: 'stephan', token: '1234'}
+    const { getByText } = render(<BR><Dashboard user={user} /></BR>);
+    const linkElement = getByText(/Welcome back, stephan/i);
     expect(linkElement).toBeInTheDocument();
   })
 })
