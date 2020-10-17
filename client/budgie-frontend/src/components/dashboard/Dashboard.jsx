@@ -10,20 +10,21 @@ export default function Dashboard({ user }) {
   const [accounts, setAccounts] = useState([])
   const [totalExpenditure, setTotalExpenditure] = useState(0)
 
-  const headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `Token ${user.token}`
-  }
-  console.log(user)
   useEffect(() => {
-    axios.get(baseURL + bankAccountEndpointAll, { headers: headers})
-    .then((response) => {
-      console.log('successful response', response.data)
-      setAccounts(response.data)
-    })
-    .catch((error) => {
-      console.log('something went wrong: ', error)
-    })
+    if (user) {
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${user.token}`
+      }
+      axios.get(baseURL + bankAccountEndpointAll, { headers: headers})
+      .then((response) => {
+        console.log('successful response', response.data)
+        setAccounts(response.data)
+      })
+      .catch((error) => {
+        console.log('something went wrong: ', error)
+      })
+    }
   }, [])
   let expenditure = 0
   useEffect(() => {
