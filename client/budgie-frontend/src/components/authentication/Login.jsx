@@ -50,7 +50,7 @@ export default function Login({user, setUser}) {
           <input type="text" name="username" onChange={handleOnChange} value={loginCredentials.username}/> <br/>
           <label>Password:</label> <br/>
           <input type="password" name="password" onChange={handleOnChange} value={loginCredentials.password}/> <br/>
-          <input type="submit"/>
+          <input type="submit" value='Login'/>
         </form>
         <p className={styles.errorMessage} style={errorStyle}>{loginErrorMessage}</p>
       </div>
