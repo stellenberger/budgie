@@ -13,7 +13,7 @@ export default function AddBankAccount({ user }) {
 
   const headers = {
     'Content-Type': 'application/json',
-    'Authorization': `Token ${user.token}`
+    'Authorization': `Token ${user && user.token}`
   }
 
   const submitForm = (e) => {
