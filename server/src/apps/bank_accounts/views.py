@@ -60,7 +60,6 @@ def bankAccountDetailAll(request):
 @api_view(['POST'])
 def bankAccountCreate(request):
   request.data['user_id'] = request.user.id
-  print(request.data['user_id'])
   serializer = BankAccountSerializer(data=request.data)
   
   if serializer.is_valid():
