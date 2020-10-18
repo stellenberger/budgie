@@ -8,6 +8,7 @@ from rest_framework import status
 # from profiles.api.serializers import ProfileSerializer
 
 
+
 class RegistrationTestCase(APITestCase):
 
   def test_registration(self):
@@ -17,3 +18,16 @@ class RegistrationTestCase(APITestCase):
             }
     response = self.client.post("/api/v1/authentication/users/", data)
     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+
+class LoginTestCase(APITestCase):
+  def setUp(self):
+    self.user = User.objects.create_user(username="testcase",
+                                        password="password321")
+
+  def test_login(self):
+    data = {"username": "testcase", 
+            "password": "password321",
+            }
+    response = self.client.post("/api/v1/login/", data)
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
