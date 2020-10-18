@@ -29,11 +29,24 @@ describe('Testing the AddBankAccount Component', () => {
       getByText 
     } = render(
       <BR>
+        <AddBankAccount user={user}/>
         <R path='/'><Landing user={user}/></R>
-        <R path='/add_bank_account'><AddBankAccount user={user}/></R>
       </BR>
     );
     const titleElement = getByText(/Welcome to budgie/i);
     expect(titleElement).toBeInTheDocument();
+  })
+
+  it('Will not redirect if the user is logged in', () => {
+    user = {username: 'stephan', token: '1234'}
+    const { 
+      container,
+    } = render(
+      <BR>
+        <AddBankAccount user={user}/>
+        <R exact path='/'><Landing user={user}/></R>
+      </BR>
+    );
+    expect(container).not.toHaveTextContent(/Welcome to budgie,/i);
   })
 })
