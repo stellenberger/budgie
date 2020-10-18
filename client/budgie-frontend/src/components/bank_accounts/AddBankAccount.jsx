@@ -9,16 +9,19 @@ import axios from 'axios'
 export default function AddBankAccount({ user }) {
   const [bankAccountName, setBankAccountName] = useState('')
   const [bankAccountFile, setBankAccountFile] = useState(null)
-  const [bankAccountUserId, setBankAccountUserId] = useState(1)
   let history = useHistory()
+
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Token ${user.token}`
+  }
 
   const submitForm = (e) => {
     let uploadData = new FormData()
     uploadData.append('name', bankAccountName)
     uploadData.append('records', bankAccountFile, bankAccountFile.name)
-    uploadData.append('user_id', bankAccountUserId)
     console.log(uploadData)
-    axios.post(baseURL + '/bank-accounts/create/', uploadData)
+    axios.post(baseURL + '/bank-accounts/create/', uploadData, { headers: headers})
     .then((response) => {
       console.log('bank account successfully added to database', response.data)
       history.push('/dashboard')
@@ -49,11 +52,10 @@ export default function AddBankAccount({ user }) {
         { user && <h1 className={styles.welcomeMessage}>Welcome back, {user.username}!</h1> }
         <h3>To add new cards or bank accounts, fill in the following form to get an overview of your spendings</h3>
           <form action="POST" onSubmit={submitForm}>
-          <label>Bank Account Name:</label> <br/>
-          <input type="text" name="name" onChange={handleOnChange} value={bankAccountName}/> <br/>
+          <label>Bank Account Name: <input type="text" name="name" onChange={handleOnChange} value={bankAccountName}/> <br/></label> <br/>
           <label>Upload your statement in CSV format:</label> <br/>
-          <input type="file" name="records" onChange={handleOnChangeFile}/> <br/>
-          <input type="submit"/>
+          <input id='name' type="file" name="records" onChange={handleOnChangeFile}/> <br/>
+          <input type="submit" value="Submit"/>
         </form>
       </div>
     </div>

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState as useStateMock} from 'react'
 import { AddBankAccount, Landing } from '../../../components'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, getByLabelText } from '@testing-library/react'
 import { 
   BrowserRouter as BR,
   Route as R
 } from 'react-router-dom'
+import { act } from 'react-dom/test-utils';
+import axiosMock from 'axios'
 
 describe('Testing the AddBankAccount Component', () => {
   let container
@@ -48,5 +50,8 @@ describe('Testing the AddBankAccount Component', () => {
       </BR>
     );
     expect(container).not.toHaveTextContent(/Welcome to budgie,/i);
+  })
+
+  it('Will call the API on file upload submit', () => {
   })
 })
