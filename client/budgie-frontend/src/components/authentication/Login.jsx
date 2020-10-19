@@ -14,7 +14,6 @@ export default function Login({user, setUser}) {
   const submitForm = (e) => {
     axios.post(baseURL + loginEndpoint, loginCredentials)
     .then((response) => {
-      console.log('login successful', response.data)
       setUser({username: loginCredentials.username, token: response.data.token })
       history.push('/dashboard')
     })
@@ -23,16 +22,13 @@ export default function Login({user, setUser}) {
       showErrorMessage()
     })
     e.preventDefault()
-    console.log('form submitted', loginCredentials)
   }
 
   const handleOnChange = (e) => {
     setLoginCredentials({...loginCredentials, [e.target.name]: e.target.value})
-    console.log('Handeling on change', loginCredentials)
   }
 
   const showErrorMessage = () => {
-    console.log('hello from inside error message')
     setLoginErrorMessage("We didnt recognise your email or password")
     setErrorStyle({display: 'block'})
     setTimeout(() => {
