@@ -22,7 +22,8 @@ class BankAccount(Timestamps, models.Model):
     accountData = {
       "accounts": [], 
       "total_expenditure": 0,
-      "total_difference": 0
+      "total_difference": 0,
+      "chart_data": []
     }
     i = 0
     while i < len(csv_array):
@@ -30,7 +31,30 @@ class BankAccount(Timestamps, models.Model):
       i += 1
     accountData["total_expenditure"] = BankAccount.find_total_expenditure(accountData["accounts"])
     accountData["total_difference"] = BankAccount.find_total_difference(accountData["accounts"])
+    accountData["chart_data"] = BankAccount.set_chart_data(accountData["accounts"]) 
     return accountData
+
+
+
+  def set_chart_data(accountData):
+    chart_data = []
+    for account in accountData:
+      dates = []
+      accountBalances = []
+      i = 1
+      while i < len(account[0]):
+        dates.append(account[0][i][0])
+        i += 1
+      i = 1
+      while i < len(account[0]):
+        accountBalance = float(account[0][i][7])
+        accountBalances.append(accountBalance)
+        i += 1
+      chart_data.append({
+        "dates": dates, 
+        "accountBalances": accountBalances,
+      })
+    return chart_data
 
 
   def find_total_expenditure(accounts):
@@ -56,3 +80,4 @@ class BankAccount(Timestamps, models.Model):
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
           csv_object.append(line)
+

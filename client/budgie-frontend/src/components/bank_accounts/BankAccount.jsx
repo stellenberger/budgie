@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { Chart, AccountTable } from '../index.jsx'
 import styles from './BankAccount.module.scss'
 
-export default function BankAccount({account, accountData}) {
+export default function BankAccount({ account, accountData, chartData }) {
   const [errorMessage, setErrorMessage] = useState('Sorry, but you dont have any accounts.')
 
   return (
     <div>
       {!account && !accountData && errorMessage}
-      {account && accountData && <Chart account={account} accountData={accountData} />}
+      {account && accountData && <Chart account={account} chartData={chartData} />}
         {account && (
           <div className={styles.accountOverviewContainer}>
             <h4>{account.name}</h4>

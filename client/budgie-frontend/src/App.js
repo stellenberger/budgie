@@ -24,6 +24,7 @@ function App() {
   const [ user, setUser ] = useState(null)
   const [accounts, setAccounts] = useState([])
   const [statistics, setStatistics] = useState({totalDifference: 0, totalExpenditure: 0})
+  const [chartData, setChartData] = useState([])
 
   useEffect(() => {
     if (user) {
@@ -40,6 +41,7 @@ function App() {
           totalExpenditure: response.data.total_expenditure
         }
         setStatistics(newStatistics)
+        setChartData(response.data.chart_data)
       })
       .catch((error) => {
         console.log('something went wrong: ', error)
@@ -53,7 +55,7 @@ function App() {
           <Route exact path='/' render={(props) => <Landing user={user} setUser={setUser}/>} />
           <Route exact path='/login' render={(props) => <Login user={user} setUser={setUser}/>} />
           <Route exact path='/register' render={(props) => <Register user={user} setUser={setUser}/>} />
-          <Route exact path='/dashboard' render={(props) => <Dashboard user={user} accounts={accounts} statistics={statistics}/>} />
+          <Route exact path='/dashboard' render={(props) => <Dashboard user={user} accounts={accounts} statistics={statistics} chartData={chartData}/>} />
           <Route exact path='/statistics' render={(props) => <Statistics user={user}/>} />
           <Route exact path='/account/:id' render={(props) => <Account user={user}/>} />
           <Route exact path='/add_bank_account' render={(props) => <AddBankAccount user={user}/>} />

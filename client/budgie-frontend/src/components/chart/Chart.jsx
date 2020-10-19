@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import {Bar, Line, Pie} from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2'
 
-export default function Chart({ account, accountData }) {
-  const [chartData, setChartData] = useState(null) 
+export default function Chart({ account, chartData }) {
+  const [drawChartData, setDrawChartData] = useState(null) 
   const [errorMessage, setErrorMessage] = useState(null) 
-  let dates = []
-  let accountBalances = []
-  let accountBalance
   const randomNumber = () => {return Math.floor(Math.random() * 255)}
+  
   useEffect(() => {
-    if (!account || !accountData) {
+    if (!account || !chartData) {
       setErrorMessage('Sorry, but we couldnt create your chart! Have you uploaded data?')
     } else {
-      // this will move all dates into their own array
-      for (let i=1; i < accountData.length; i++) {
-        dates.push(accountData[i][0])
-      }
-      for (let i=1; i < accountData.length; i++) {
-        accountBalance = parseInt(accountData[i][7])
-        accountBalances.push(accountBalance)
-      }
-      setChartData({
-        labels: dates.reverse(),
+      setErrorMessage(null)
+      setDrawChartData({
+        labels: chartData.dates.reverse(),
         datasets: [
           {
             label: account.name,
@@ -30,21 +21,21 @@ export default function Chart({ account, accountData }) {
             borderWidth: 1,
             hoverBackgroundColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},0.4)`,
             hoverBorderColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},1)`,
-            data: accountBalances.reverse()
+            data: chartData.accountBalances.reverse()
           }
         ] 
       })
     }
-  }, [])
+  }, [chartData])
   
   return (
     <div>
       <h2>{ errorMessage }</h2>
-      {chartData && 
+      {drawChartData && 
         <div>
           <h2>{account.name}</h2>
           <Bar
-            data={chartData}
+            data={drawChartData}
             width={100}
             height={150}
             options={{
