@@ -32,7 +32,12 @@ describe('Testing the Register Component', () => {
 
   it('makes an api call on submit', async () => {
     const user = null
-    const { getByRole } = render(<Register user={user} />)
+    const setUser = jest.fn()
+    const { getByRole } = render(
+    <BR>
+      <Register user={user} setUser={setUser} />
+      <R path='/dashboard'>Redirect</R>
+    </BR>)
     const registerButton = getByRole('button');
     act(() => {
       fireEvent.click(registerButton)

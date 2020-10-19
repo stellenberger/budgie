@@ -9,6 +9,12 @@ import {
 describe('Testing the Landing Component', () => {
   let container
   let user 
+  const statistics = {totalExpenditure: 0, totalDifference: 0}
+  let accounts = [
+    [[["Transaction Date", "Transaction Type", "Sort Code", "Account Number", "Transaction Description", "Debit Amount", "Credit Amount", "Balance"],
+    ["28/01/2020", "DD", "11-22-33", "1122334", "American Express", "200.00", "", "1499.00"]],
+    {id: 3, name: "debit account example", records: "/debit_account_example.csv", user_id: 1}]
+  ]
 
   it('renders without crashing', () => {
     user = null
@@ -30,7 +36,7 @@ describe('Testing the Landing Component', () => {
     } = render(
       <BR>
         <R path='/'><Landing user={user}/></R>
-        <R path='/dashboard'><Dashboard user={user}/></R>
+        <R path='/dashboard'><Dashboard user={user}  accounts={accounts} statistics={statistics} /></R>
       </BR>
     );
     const titleElement = getByText(/Welcome back, stephan/i);
@@ -97,7 +103,7 @@ describe('Testing the Landing Component', () => {
     } = render(
       <BR>
         <R path='/'><Landing user={user}/></R>
-        <R path='/dashboard'><Dashboard user={user}/></R>
+        <R path='/dashboard'><Dashboard user={user}  accounts={accounts} statistics={statistics} /></R>
       </BR>
     );
     const titleElement = getByText(/Welcome to budgie, the smart budgeting app to manage your spendings/i);

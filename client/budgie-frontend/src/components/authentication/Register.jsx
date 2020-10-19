@@ -23,15 +23,12 @@ export default function Register({ user, setUser }) {
     } else {
       axios.post(baseURL + registerEndpoint, registerUser)
       .then((response) => {
-        console.log('Registration successful', response)
-        console.log(response.data.token)
         setUser({ username: registerUser.username, token: response.data.token })
         history.push('/dashboard')
       })
       .catch((error) => {
         console.log('there was a problem with the registration', error)
       })
-      console.log('register submitted', registerUser)
     }
   }
 

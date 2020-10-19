@@ -24,8 +24,6 @@ function App() {
   const [ user, setUser ] = useState(null)
   const [accounts, setAccounts] = useState([])
   const [statistics, setStatistics] = useState({totalDifference: 0, totalExpenditure: 0})
-  const [totalExpenditure, setTotalExpenditure] = useState(0)
-  const [totalDifference, setTotalDifference] = useState(0)
 
   useEffect(() => {
     if (user) {

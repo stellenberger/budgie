@@ -5,7 +5,6 @@ export default function AccountTable({accountData}) {
 
   useEffect(() => {
     if (!accountData) {
-      console.log(accountData, 'accountData')
       setErrorMessage('There is no account data available')
     }
   }, [])
