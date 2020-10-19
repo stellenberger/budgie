@@ -3,6 +3,7 @@ Welcome to the Front End Repository for budgie, the budget app
 This was created using ReactJS and utilises the following technologies
 
 - React Router DOM
+- ChartJS
 - SCSS Preprocessor
 - React Hooks
 - Axios
