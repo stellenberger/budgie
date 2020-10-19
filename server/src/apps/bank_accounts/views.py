@@ -22,10 +22,7 @@ def bankAccountDetail(request, pk):
   bankAccount = BankAccount.objects.get(id=pk)
   serializer = BankAccountSerializer(bankAccount, many=False)
   csv_array = []
-  with open(f'{bankAccount.records}', 'r') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    for line in csv_reader:
-      csv_array.append(line)
+  BankAccount.csv_to_array(bankAccount, csv_array)
   response = [csv_array, serializer.data]
   return Response(response)
 
@@ -33,7 +30,6 @@ def bankAccountDetail(request, pk):
 # Get multiple bank account views
 @api_view(['GET'])
 def bankAccountDetailAll(request):
-  print(BankAccount.hi())
   user_id = request.user.id
   bankAccounts = BankAccount.objects.filter(user_id=user_id)
   serializer = BankAccountSerializer(bankAccounts, many=True)

@@ -12,12 +12,8 @@ class BankAccount(Timestamps, models.Model):
   def sort_csv_data(bankAccounts):
     csv_array = []
     for account in bankAccounts: 
-      print(account.hi)
       csv_object = []
-      with open(f'{account.records}', 'r') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        for line in csv_reader:
-          csv_object.append(line)
+      BankAccount.csv_to_array(account, csv_object)
       csv_array.append(csv_object)
     return csv_array
 
@@ -29,3 +25,10 @@ class BankAccount(Timestamps, models.Model):
       accountData.append([csv_array[i], serializer.data[i]])
       i += 1
     return accountData
+
+
+  def csv_to_array(account, csv_object):
+    with open(f'{account.records}', 'r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        for line in csv_reader:
+          csv_object.append(line)
