@@ -16,7 +16,7 @@ export default function Dashboard({ user, accounts, statistics, chartData }) {
         <p>From the beginning to the end of the month, you have a total difference of £{statistics.totalDifference} over {accounts.length} accounts</p>
         <p>This month, you have an average spend of £{statistics.totalExpenditure / 30} per day</p>
         <h2>Each of your accounts, graphed by date</h2>
-        {accounts && accounts.map((account, index) => {
+        {accounts && chartData && accounts.map((account, index) => {
           return <BankAccount key={account[1].id} account={account[1]} accountData={account[0]} chartData={chartData[index]} />
         })}
       </div>

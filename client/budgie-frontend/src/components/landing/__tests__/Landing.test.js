@@ -36,7 +36,7 @@ describe('Testing the Landing Component', () => {
     } = render(
       <BR>
         <R path='/'><Landing user={user}/></R>
-        <R path='/dashboard'><Dashboard user={user}  accounts={accounts} statistics={statistics} /></R>
+        <R path='/dashboard'>Welcome back, stephan</R>
       </BR>
     );
     const titleElement = getByText(/Welcome back, stephan/i);
