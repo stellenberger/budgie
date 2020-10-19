@@ -2,34 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import { NavPanel, BankAccount } from '../index.jsx'
 import styles from './Dashboard.module.scss'
-import axios from 'axios'
-import { baseURL, bankAccountEndpointAll } from '../../constants'
 
 
-export default function Dashboard({ user }) {
-  const [accounts, setAccounts] = useState([])
-  const [totalExpenditure, setTotalExpenditure] = useState(0)
-  const [totalDifference, setTotalDifference] = useState(0)
-
-  useEffect(() => {
-    if (user) {
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Token ${user.token}`
-      }
-      axios.get(baseURL + bankAccountEndpointAll, { headers: headers})
-      .then((response) => {
-        console.log('successful response', response.data)
-        setAccounts(response.data.accounts)
-        setTotalExpenditure(response.data.total_expenditure)
-        setTotalDifference(response.data.total_difference)
-      })
-      .catch((error) => {
-        console.log('something went wrong: ', error)
-      })
-    }
-  }, [])
-
+export default function Dashboard({ user, totalDifference, totalExpenditure, accounts }) {
 
   return (
     <div className={styles.container}>

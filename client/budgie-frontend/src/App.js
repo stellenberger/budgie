@@ -14,15 +14,36 @@ import {
   Login, 
   Register, 
   AddBankAccount,
-  ErrorPage404 } from './components'
+  ErrorPage404 
+} from './components'
+import axios from 'axios'
+import { baseURL, bankAccountEndpointAll } from './constants'
 
 function App() {
   const exampleUser = {id: 1, username: 'stephanellenberger', token: '123'} // This is for overriding redirects, and is not a real user
   const [ user, setUser ] = useState(null)
+  const [accounts, setAccounts] = useState([])
+  const [totalExpenditure, setTotalExpenditure] = useState(0)
+  const [totalDifference, setTotalDifference] = useState(0)
 
   useEffect(() => {
-    // check if user session is active
-  }, [])
+    if (user) {
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${user.token}`
+      }
+      axios.get(baseURL + bankAccountEndpointAll, { headers: headers})
+      .then((response) => {
+        console.log('successful response', response.data)
+        setAccounts(response.data.accounts)
+        setTotalExpenditure(response.data.total_expenditure)
+        setTotalDifference(response.data.total_difference)
+      })
+      .catch((error) => {
+        console.log('something went wrong: ', error)
+      })
+    }
+  }, [user])
   return (
     <div className="App">
       <Router>
@@ -30,7 +51,7 @@ function App() {
           <Route exact path='/' render={(props) => <Landing user={user} setUser={setUser}/>} />
           <Route exact path='/login' render={(props) => <Login user={user} setUser={setUser}/>} />
           <Route exact path='/register' render={(props) => <Register user={user} setUser={setUser}/>} />
-          <Route exact path='/dashboard' render={(props) => <Dashboard user={user}/>} />
+          <Route exact path='/dashboard' render={(props) => <Dashboard user={user} accounts={accounts} totalDifference={totalDifference} totalExpenditure={totalExpenditure}/>} />
           <Route exact path='/statistics' render={(props) => <Statistics user={user}/>} />
           <Route exact path='/account/:id' render={(props) => <Account user={user}/>} />
           <Route exact path='/add_bank_account' render={(props) => <AddBankAccount user={user}/>} />
