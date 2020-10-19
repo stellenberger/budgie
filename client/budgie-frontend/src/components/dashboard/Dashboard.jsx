@@ -19,16 +19,14 @@ export default function Dashboard({ user }) {
       axios.get(baseURL + bankAccountEndpointAll, { headers: headers})
       .then((response) => {
         console.log('successful response', response.data)
-        setAccounts(response.data)
+        setAccounts(response.data.accounts)
+        setTotalExpenditure(response.data.total_expenditure)
       })
       .catch((error) => {
         console.log('something went wrong: ', error)
       })
     }
   }, [])
-  useEffect(() => {
-    setTotalExpenditure(accounts[accounts.length - 1])
-  }, [accounts])
 
 
   return (
