@@ -26,16 +26,8 @@ export default function Dashboard({ user }) {
       })
     }
   }, [])
-  let expenditure = 0
   useEffect(() => {
-    accounts.map(account => {
-      for(let i = 1; i < account[0].length; i++) {
-        if(account[0][i][5].length !== 0) {
-          expenditure += parseInt(account[0][i][5])
-        }
-      }
-    })
-    setTotalExpenditure(expenditure)
+    setTotalExpenditure(accounts[accounts.length - 1])
   }, [accounts])
 
 
