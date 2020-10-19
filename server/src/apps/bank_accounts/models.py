@@ -19,12 +19,17 @@ class BankAccount(Timestamps, models.Model):
 
 
   def sort_account_data(csv_array, serializer):
-    accountData = {"accounts": [], "total_expenditure": 0}
+    accountData = {
+      "accounts": [], 
+      "total_expenditure": 0,
+      "total_difference": 0
+    }
     i = 0
     while i < len(csv_array):
       accountData['accounts'].append([csv_array[i], serializer.data[i]])
       i += 1
     accountData["total_expenditure"] = BankAccount.find_total_expenditure(accountData["accounts"])
+    accountData["total_difference"] = BankAccount.find_total_difference(accountData["accounts"])
     return accountData
 
 
@@ -37,6 +42,14 @@ class BankAccount(Timestamps, models.Model):
           total_expenditure += float(account[0][i][5])
         i += 1
     return total_expenditure
+
+
+  def find_total_difference(accounts):
+    total_difference = 0
+    for account in accounts:
+      total_difference += (float(account[0][1][7]) - float(account[0][len(account[0]) - 1][7]))
+    return total_difference
+
 
   def csv_to_array(account, csv_object):
     with open(f'{account.records}', 'r') as csv_file:
