@@ -6,6 +6,7 @@ export { default as Statistics } from './statistics/Statistics.jsx';
 export { default as Account } from './account/Account.jsx';
 export { default as NavPanel } from './navpanel/NavPanel.jsx';
 export { default as Chart } from './chart/Chart.jsx';
+export { default as PieChart } from './chart/PieChart.jsx';
 export { default as AddBankAccount } from './bank_accounts/AddBankAccount.jsx';
 export { default as BankAccount } from './bank_accounts/BankAccount.jsx';
 export { default as AccountTable } from './bank_accounts/AccountTable.jsx';

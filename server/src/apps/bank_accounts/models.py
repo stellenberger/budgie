@@ -23,7 +23,9 @@ class BankAccount(Timestamps, models.Model):
       "accounts": [], 
       "total_expenditure": 0,
       "total_difference": 0,
-      "chart_data": []
+      "total_transactions": 0,
+      "chart_data": [],
+      "pie_chart_data": [],
     }
     i = 0
     while i < len(csv_array):
@@ -31,9 +33,17 @@ class BankAccount(Timestamps, models.Model):
       i += 1
     accountData["total_expenditure"] = BankAccount.find_total_expenditure(accountData["accounts"])
     accountData["total_difference"] = BankAccount.find_total_difference(accountData["accounts"])
+    accountData["total_transactions"] = BankAccount.find_total_transactions(accountData["accounts"])
     accountData["chart_data"] = BankAccount.set_chart_data(accountData["accounts"]) 
+    accountData["pie_chart_data"] = BankAccount.set_pie_chart_data(accountData["accounts"]) 
     return accountData
 
+
+  def find_total_transactions(accounts):
+    total_transactions = 0
+    for account in accounts:
+      total_transactions += len(account[0]) - 1
+    return total_transactions
 
 
   def set_chart_data(accountData):
@@ -55,6 +65,33 @@ class BankAccount(Timestamps, models.Model):
         "accountBalances": accountBalances,
       })
     return chart_data
+
+
+  def set_pie_chart_data(accountData):
+    pie_chart_data = []
+    for account in accountData:
+      shops = []
+      debit_amounts = []
+      i = 1
+      while i < len(account[0]):
+        if account[0][i][5] == '':
+          i += 1
+          continue
+        shops.append(account[0][i][4])
+        i += 1
+      i = 1
+      while i < len(account[0]):
+        if account[0][i][5] == '':
+          i += 1
+          continue 
+        debit_amount = float(account[0][i][5])
+        debit_amounts.append(debit_amount)
+        i += 1
+      pie_chart_data.append({
+        "shops": shops, 
+        "debit_amounts": debit_amounts,
+      })
+    return pie_chart_data
 
 
   def find_total_expenditure(accounts):

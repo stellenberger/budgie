@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Bar, Pie } from 'react-chartjs-2'
+import { Pie } from 'react-chartjs-2'
 
-export default function Chart({ account, chartData }) {
+export default function PieChart({ account, chartData }) {
   const [drawChartData, setDrawChartData] = useState(null) 
   const [errorMessage, setErrorMessage] = useState(null) 
   const randomNumber = () => {return Math.floor(Math.random() * 255)}
@@ -12,16 +12,16 @@ export default function Chart({ account, chartData }) {
     } else {
       setErrorMessage(null)
       setDrawChartData({
-        labels: chartData.dates.reverse(),
+        labels: chartData.shops,
         datasets: [
           {
             label: account.name,
-            backgroundColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},0.2)`,
+            backgroundColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},0.7)`,
             borderColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},1)`,
             borderWidth: 1,
-            hoverBackgroundColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},0.4)`,
+            hoverBackgroundColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},0.9)`,
             hoverBorderColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},1)`,
-            data: chartData.accountBalances.reverse()
+            data: chartData.debit_amounts
           }
         ] 
       })
@@ -34,7 +34,7 @@ export default function Chart({ account, chartData }) {
       {drawChartData && 
         <div>
           <h2>{account.name}</h2>
-          <Bar
+          <Pie
             data={drawChartData}
             width={100}
             height={150}

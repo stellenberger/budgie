@@ -20,7 +20,8 @@ export default function NavPanel({ user }) {
           <div className={styles.container}>
             <h2>{user.username}</h2>
             <ul>
-              <li><Link to='/'>Statistics</Link></li>
+              <li><Link to='/dashboard'>Home</Link></li>
+              <li><Link to='/statistics'>Statistics</Link></li>
               <li><Link to='/add_bank_account'>Add new card</Link></li>
               <li><Link to='/'>Account</Link></li>
               <li><Link to='/'>About this app</Link></li>
