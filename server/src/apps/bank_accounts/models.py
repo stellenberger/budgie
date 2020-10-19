@@ -19,13 +19,25 @@ class BankAccount(Timestamps, models.Model):
 
 
   def sort_account_data(csv_array, serializer):
-    accountData = []
+    accounts = []
     i = 0
     while i < len(csv_array):
-      accountData.append([csv_array[i], serializer.data[i]])
+      accounts.append([csv_array[i], serializer.data[i]])
       i += 1
-    return accountData
+    total_expenditure = BankAccount.find_total_expenditure(accounts)
+    accounts.append(total_expenditure)
+    return accounts
 
+
+  def find_total_expenditure(accounts):
+    total_expenditure = 0
+    for account in accounts:
+      i = 1
+      while i < len(account[0]):
+        if len(account[0][i][5]) != 0:
+          total_expenditure += float(account[0][i][5])
+        i += 1
+    return total_expenditure
 
   def csv_to_array(account, csv_object):
     with open(f'{account.records}', 'r') as csv_file:
