@@ -6,17 +6,25 @@ export default function PieChart({ account, chartData }) {
   const [errorMessage, setErrorMessage] = useState(null) 
   const randomNumber = () => {return Math.floor(Math.random() * 255)}
   
+  
   useEffect(() => {
     if (!account || !chartData) {
       setErrorMessage('Sorry, but we couldnt create your chart! Have you uploaded data?')
     } else {
+      const backgroundColorArray = () => {
+        let bgarray = []
+        for(let i=0; i<chartData.debit_amounts.length; i++){
+          bgarray.push(`rgba(${randomNumber()},${randomNumber()},${randomNumber()},0.7)`)
+        }
+        return bgarray
+      }
       setErrorMessage(null)
       setDrawChartData({
         labels: chartData.shops,
         datasets: [
           {
             label: account.name,
-            backgroundColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},0.7)`,
+            backgroundColor: backgroundColorArray(),
             borderColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},1)`,
             borderWidth: 1,
             hoverBackgroundColor: `rgba(${randomNumber()},${randomNumber()},${randomNumber()},0.9)`,
