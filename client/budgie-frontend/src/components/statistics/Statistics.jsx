@@ -15,7 +15,7 @@ export default function Statistics({ user, statistics, accounts, chartData }) {
       { user ? null : <Redirect to='/' /> }
       { user && <NavPanel user={user} /> }
       <div className={styles.content}>
-        <h2>Take a look at the your statistics over your accounts, all in one place!</h2>
+        <h2>Take a look at the statistics over your accounts, all in one place!</h2>
         <p>You have spent <b>£{statistics.totalExpenditure}</b> over <b>{accounts.length}</b> accounts this month</p>
         <p>Compared to the beginning of this month, you are { upOrDown() } £{statistics.totalDifference} over {accounts.length} accounts</p>
         <p>This month, you have an average spend of £{Math.floor(statistics.totalExpenditure / 30)} per day (with 30 days in a month)</p>
