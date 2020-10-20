@@ -6,7 +6,7 @@ import styles from './AddBankAccount.module.scss'
 import { baseURL, accountEndpoint } from '../../constants'
 import axios from 'axios'
 
-export default function AddBankAccount({ user }) {
+export default function AddBankAccount({ user, setHasUploadedData }) {
   const [bankAccountName, setBankAccountName] = useState('')
   const [bankAccountFile, setBankAccountFile] = useState(null)
   let history = useHistory()
@@ -24,6 +24,7 @@ export default function AddBankAccount({ user }) {
     axios.post(baseURL + '/bank-accounts/create/', uploadData, { headers: headers})
     .then((response) => {
       console.log('bank account successfully added to database', response.data)
+      setHasUploadedData(true)
       history.push('/dashboard')
     })
     .catch((error) => {

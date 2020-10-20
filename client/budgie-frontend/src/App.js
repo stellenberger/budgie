@@ -26,6 +26,7 @@ function App() {
   const [statistics, setStatistics] = useState({totalDifference: 0, totalExpenditure: 0, totalTransactions: 0})
   const [chartData, setChartData] = useState([])
   const [pieChartData, setPieChartData] = useState([])
+  const [hasUploadedData, setHasUploadedData] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -50,7 +51,7 @@ function App() {
         console.log('something went wrong: ', error)
       })
     }
-  }, [user])
+  }, [user, hasUploadedData])
   return (
     <div className="App">
       <Router>
@@ -61,7 +62,7 @@ function App() {
           <Route exact path='/dashboard' render={(props) => <Dashboard user={user} accounts={accounts} statistics={statistics} chartData={chartData}/>} />
           <Route exact path='/statistics' render={(props) => <Statistics user={user} statistics={statistics} accounts={accounts} chartData={pieChartData}/>} />
           <Route exact path='/account/:id' render={(props) => <Account user={user}/>} />
-          <Route exact path='/add_bank_account' render={(props) => <AddBankAccount user={user}/>} />
+          <Route exact path='/add_bank_account' render={(props) => <AddBankAccount user={user} setHasUploadedData={setHasUploadedData} />} />
           <Route component={ErrorPage404} />
         </Switch>
       </Router>
